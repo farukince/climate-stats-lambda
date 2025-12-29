@@ -1,52 +1,10 @@
 import axios from 'axios';
 
 interface WeatherData {
-    main: {
-        temp: number;
-        humidity: number;
-    };
-    wind: {
-        speed: number;
-    };
-    weather: Array<{
-        description: string;
-    }>;
+    main: { temp: number; humidity: number; };
+    wind: { speed: number; };
+    weather: Array<{ description: string; }>;
     name: string;
-}
-
-const API_KEY: string = '40534da5bd28d412725c7555dc179c49';
-const CITY: string = 'Ankara';
-const URL: string = `https://api.openweathermap.org/data/2.5/weather`;
-
-async function getWeatherData(): Promise<WeatherData | void> {
-    try {
-        const response = await axios.get<WeatherData>(URL, {
-            params: {
-                q: CITY,
-                appid: API_KEY,
-                units: 'metric',
-                lang: 'eng'
-            }
-        });
-
-        const data = response.data;
-        const score = calculateSCI(data.main.temp, data.main.humidity, data.wind.speed);
-        
-        console.log(`--- ${data.name} for Air Condition (TS) ---`);
-        console.log(`Temperature: ${data.main.temp}°C`);
-        console.log(`Humidity: %${data.main.humidity}`);
-        console.log(`Wind Speed: ${data.wind.speed} m/s`);
-        console.log(`Condition: ${data.weather[0]?.description}`);
-        console.log("Comfort Score: ", score);
-
-        return data;
-    } catch (error) {
-        if (axios.isAxiosError(error)) {
-            console.error("API Error:", error.response?.data || error.message);
-        } else {
-            console.error("Unexpected Error:", error);
-        }
-    }
 }
 
 function calculateSCI(temp: number, humidity: number, wind: number): number {
@@ -65,4 +23,51 @@ function calculateSCI(temp: number, humidity: number, wind: number): number {
     
     return Math.max(0, Math.min(100, Math.round(score)));
 }
-getWeatherData();
+
+export const handler = async (event: any) => {
+    const city = event.queryStringParameters?.city || 'Ankara';
+    const API_KEY = '40534da5bd28d412725c7555dc179c49'; 
+    const URL = `https://api.openweathermap.org/data/2.5/weather`;
+
+    try {
+        const response = await axios.get<WeatherData>(URL, {
+            params: {
+                q: city,
+                appid: API_KEY,
+                units: 'metric',
+                lang: 'en'
+            }
+        });
+
+        const data = response.data;
+        const score = calculateSCI(data.main.temp, data.main.humidity, data.wind.speed);
+
+        const result = {
+            city: data.name,
+            temperature: `${data.main.temp}°C`,
+            humidity: `%${data.main.humidity}`,
+            windSpeed: `${data.wind.speed} m/s`,
+            condition: data.weather[0]?.description,
+            comfortScore: score,
+            message: score > 70 ? "The weather is perfect for a walk!" : "Be careful when you go outside."
+        };
+
+        return {
+            statusCode: 200,
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*" 
+            },
+            body: JSON.stringify(result)
+        };
+
+    } catch (error: any) {
+        return {
+            statusCode: error.response?.status || 500,
+            body: JSON.stringify({
+                message: "Weather data could not be obtained.",
+                error: error.message
+            })
+        };
+    }
+};
