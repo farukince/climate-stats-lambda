@@ -23,8 +23,8 @@ jobs:
         run: npx tsc 
 
       - name: Prepare Lambda Zip
-        
         run: |
+          mkdir -p dist
           cp package.json dist/
           cd dist
           npm install --production
