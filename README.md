@@ -49,25 +49,25 @@ Example Response:
 }
 
 🏗️ Development & Deployment
-1. Prerequisites
+# 1. Prerequisites
 Node.js installed locally.
 
 An active AWS Account with IAM credentials configured.
 
 OpenWeatherMap API Key.
 
-2. Local Setup
+# 2. Local Setup
 
-# Clone the repository
+## Clone the repository
 git clone https://github.com/your-repo/stat-weather-api.git
 
-# Install dependencies
+## Install dependencies
 npm install
 
-# Build the project
+## Build the project
 npx tsc
 
-3. CI/CD Configuration
+# 3. CI/CD Configuration
 
 The project uses GitHub Actions for deployment. Ensure the following secrets are added to your GitHub repository settings:
 
