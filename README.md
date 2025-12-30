@@ -11,7 +11,11 @@ Automated CI/CD Pipeline: Integration with GitHub Actions ensures that every cod
 Type-Safe Implementation: Developed using TypeScript to ensure robust error handling and maintainable code architecture.
 
 # 📊 The Statistical Model
-Statistical Comfort Index (SCI)The API calculates the human comfort level by measuring deviations from ideal environmental conditions. The model applies weighted penalties to different meteorological factors using the following formula:$$SCI = 100 - \left( |T - T_{ideal}| \cdot w_T + |H - H_{ideal}| \cdot \alpha \cdot w_H + |W| \cdot w_W \right) \cdot 10$$Model ParametersIdeal Values:Optimal temperature ($T_{ideal}$): 22°COptimal humidity ($H_{ideal}$): 45%Weights ($w$):Temperature ($w_T$): 60% impact on the final score.Humidity ($w_H$): 30% impact on the final score.Wind Speed ($w_W$): 10% impact on the final score.Logic: The score decreases as current conditions deviate from the "Comfort Zone," simulating human sensitivity to extreme weather.
+Statistical Comfort Index (SCI)The API calculates the human comfort level by measuring deviations from ideal environmental conditions. The model applies weighted penalties to different meteorological factors using the following formula:
+$$
+SCI = 100 - \left( |T - T_{ideal}| \cdot w_T + |H - H_{ideal}| \cdot \alpha \cdot w_H + |W| \cdot w_W \right) \cdot 10
+$$
+Model ParametersIdeal Values:Optimal temperature ($T_{ideal}$): 22°COptimal humidity ($H_{ideal}$): 45%Weights ($w$):Temperature ($w_T$): 60% impact on the final score.Humidity ($w_H$): 30% impact on the final score.Wind Speed ($w_W$): 10% impact on the final score.Logic: The score decreases as current conditions deviate from the "Comfort Zone," simulating human sensitivity to extreme weather.
 ## 🛠️ Technical Stack
 Runtime: Node.js (via AWS Lambda)
 
