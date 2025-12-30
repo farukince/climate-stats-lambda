@@ -68,6 +68,7 @@ npm install
 npx tsc
 
 3. CI/CD Configuration
+
 The project uses GitHub Actions for deployment. Ensure the following secrets are added to your GitHub repository settings:
 
 AWS_ACCESS_KEY_ID: Your IAM access key.
