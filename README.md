@@ -18,7 +18,7 @@ $$
 
 Model Parameters:Ideal Values: Optimal temperature ($T_{ideal}$) is set at $22^\circ C$ and optimal humidity ($H_{ideal}$) at $45\%$.Weights ($w$): * Temperature ($w_T$): 60% impact on the final score.Humidity ($w_H$): 30% impact on the final score.Wind Speed ($w_W$): 10% impact on the final score.Logic: The score decreases as current conditions deviate from the "Comfort Zone," simulating human sensitivity to extreme weather.
 
-🛠️ Technical Stack
+## 🛠️ Technical Stack
 Runtime: Node.js (via AWS Lambda)
 
 Language: TypeScript
