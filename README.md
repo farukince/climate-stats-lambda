@@ -1,7 +1,7 @@
-🌦️ Stat-Weather API: Statistical Comfort Index Service
+# 🌦️ Stat-Weather API: Statistical Comfort Index Service
 Stat-Weather API is a production-ready, serverless backend service that processes real-time weather data through a specialized statistical model to calculate a "Human Comfort Index" (SCI). Built with TypeScript and deployed on AWS, it demonstrates a modern approach to cloud-native application development and analytical data processing.
 
-🚀 Key Features
+# 🚀 Key Features
 Serverless Architecture: Fully hosted on AWS Lambda, providing high scalability and zero maintenance.
 
 Statistical Analysis: Raw meteorological data (Temperature, Humidity, Wind Speed) is transformed into a single "Comfort Score" using a weighted penalty algorithm.
@@ -10,7 +10,8 @@ Automated CI/CD Pipeline: Integration with GitHub Actions ensures that every cod
 
 Type-Safe Implementation: Developed using TypeScript to ensure robust error handling and maintainable code architecture.
 
-📊 The Statistical Model: Statistical Comfort Index (SCI)The API calculates the human comfort level by measuring deviations from ideal environmental conditions. The model applies weighted penalties to different meteorological factors:
+# 📊 The Statistical Model
+Statistical Comfort Index (SCI)The API calculates the human comfort level by measuring deviations from ideal environmental conditions. The model applies weighted penalties to different meteorological factors:
 $$
 SCI = 100 - \left( |T - T_{ideal}| \cdot w_T + |H - H_{ideal}| \cdot \alpha \cdot w_H + |W| \cdot w_W \right) \cdot 10
 $$
@@ -28,7 +29,7 @@ DevOps: GitHub Actions (CI/CD)
 
 Data Provider: OpenWeatherMap API
 
-📡 API Reference
+# 📡 API Reference
 Get Weather & Comfort Analysis
 Endpoint: GET /weather
 
@@ -48,26 +49,26 @@ Example Response:
   "message": "Caution is advised for outdoor activities."
 }
 
-🏗️ Development & Deployment
-# 1. Prerequisites
+# 🏗️ Development & Deployment
+## 1. Prerequisites
 Node.js installed locally.
 
 An active AWS Account with IAM credentials configured.
 
 OpenWeatherMap API Key.
 
-# 2. Local Setup
+## 2. Local Setup
 
-## Clone the repository
+### Clone the repository
 git clone https://github.com/your-repo/stat-weather-api.git
 
-## Install dependencies
+### Install dependencies
 npm install
 
-## Build the project
+### Build the project
 npx tsc
 
-# 3. CI/CD Configuration
+## 3. CI/CD Configuration
 
 The project uses GitHub Actions for deployment. Ensure the following secrets are added to your GitHub repository settings:
 
